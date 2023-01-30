@@ -19,9 +19,12 @@ from rest_framework import routers
 from polished import views
 
 router = routers.DefaultRouter()
-router.register(r'polished', views.PolishView, 'polish')
+router.register(r'polished', views.PolishView, 'polishes')
+router.register(r'reviews', views.Reviews, 'reviews')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-]
+    path('', include(router.urls))
+    ]
