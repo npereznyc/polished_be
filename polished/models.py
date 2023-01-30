@@ -5,20 +5,20 @@ from django.db import models
 class Brand(models.Model):
     name = models.CharField(max_length=100)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 class Polish(models.Model):
     name = models.CharField(max_length=100)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='polishes')
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 class User(models.Model):
     username = models.CharField(max_length=100)
 
-    def _str_(self):
+    def __str__(self):
         return self.username
 
 class Review(models.Model):
@@ -28,11 +28,11 @@ class Review(models.Model):
     image =  models.TextField()
     review =  models.TextField()
 
-    def _str_(self):
-        return self.user
+    def __str__(self):
+        return self.review
 
 class Favorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorites')
 
-    def _str_(self):
+    def __str__(self):
         return self.user
