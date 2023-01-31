@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Brand, Polish, User, Review, Favorites
+from polished.models import Brand, Polish, User, Review, Favorites
 
 class PolishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Polish
-        fields = ('pk', 'name', 'brand')
+        fields = ('id', 'name', 'brand')
 
 class BrandSerializer(serializers.HyperlinkedModelSerializer):
     polishes=serializers.HyperlinkedRelatedField(

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -31,8 +32,8 @@ class User(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
-    polish = models.ForeignKey(Polish, on_delete=models.CASCADE, related_name='reviews')
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='reviews')
+    polish = models.ForeignKey(Polish, on_delete=models.PROTECT, related_name='reviews')
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='reviews')
     image =  models.TextField()
     review =  models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
@@ -49,3 +50,4 @@ class Favorites(models.Model):
 
     def __str__(self):
         return self.user
+

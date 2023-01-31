@@ -15,20 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-
-
-
-# router.register(r'reviews', views.Reviews, 'reviews')
-# router.register(r'{polish.name}', views.OnePolish, 'one_polish')
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('polished.urls')),
-    # path('', include(router.urls)),
-    # path('api/reviews/', views.Reviews.as_view(), name='reviews'),
-    # path('api/polishes/', views.PolishList.as_view(), name='polishes'),
-    # path('api/<str:name>', views.OnePolish.as_view(), name='one_polish'),
-    
+    path('', include('polished.urls', namespace='polished')),
+    path('api/', include('polished_api.urls', namespace='polished_api'))    
     ]
