@@ -4,13 +4,13 @@ from .models import Brand, Polish, User, Review, Favorites
 class PolishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Polish
-        fields = ('id', 'name', 'brand')
+        fields = ('pk', 'name', 'brand')
 
-class BrandSerializer(serializers.ModelSerializer):
-    polishes=serializers.SlugRelatedField(
+class BrandSerializer(serializers.HyperlinkedModelSerializer):
+    polishes=serializers.HyperlinkedRelatedField(
         many=True,
         read_only=True,
-        slug_field='name')
+        view_name='one_polish')
     class Meta:
         model = Brand
         fields = ('id', 'name')

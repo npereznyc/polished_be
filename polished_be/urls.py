@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from polished import views
 
-router = routers.DefaultRouter()
-router.register(r'polished', views.PolishView, 'polishes')
-router.register(r'reviews', views.Reviews, 'reviews')
+
+
+# router.register(r'reviews', views.Reviews, 'reviews')
+# router.register(r'{polish.name}', views.OnePolish, 'one_polish')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('', include(router.urls))
+    path('', include('polished.urls')),
+    # path('', include(router.urls)),
+    # path('api/reviews/', views.Reviews.as_view(), name='reviews'),
+    # path('api/polishes/', views.PolishList.as_view(), name='polishes'),
+    # path('api/<str:name>', views.OnePolish.as_view(), name='one_polish'),
+    
     ]
